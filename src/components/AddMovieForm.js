@@ -4,6 +4,12 @@ import { connect } from 'react-redux';
 
 import { Link, useHistory } from 'react-router-dom';
 
+const mapStatetoProps = (state) => {
+    return({
+        movies: state.movies.movie
+});
+}
+
 const AddMovieForm = (props) => {
     const { push } = useHistory();
 
@@ -22,9 +28,12 @@ const AddMovieForm = (props) => {
         });
     }
 
-    const handleSubmit = (e) => {
-    }
-
+     const handleChange = (e) => {
+    setMovie({
+      ...movie,
+      [e.target.name]: e.target.value,
+    });
+  };
     const { title, director, genre, metascore, description } = movie;
     return(<div className="col">
         <div className="modal-dialog">
